@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: retail-mongodb
+  name: vegetable-app-mongodb
   namespace: rithika-ns
 spec:
   replicas: 1
