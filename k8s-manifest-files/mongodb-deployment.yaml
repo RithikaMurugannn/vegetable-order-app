@@ -5,6 +5,7 @@ metadata:
   namespace: rithika-ns
 spec:
   replicas: 2
+  serviceName: "mongodb"
   selector:
     matchLabels:
       app: mongodb
