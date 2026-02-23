@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vegetable-config
+  namespace: rithika-ns
+data:
+  MONGO_URI: mongodb://mongodb:27017/vegetables
+  PORT: "3000"
+root@ip-172-31-20-50:/home/ubuntu/vegetable-order-app# cat deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vegetable-order-app-deployment
+  namespace: rithika-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vegetable-order-app
+  template:
+    metadata:
+      labels:
+        app: vegetable-order-app
+    spec:
+      containers:
+      - name: vegetable-order-app
+        image: rithika17/vegetable-order-app:v1.0.1
+        ports:
+        - containerPort: 3000
+          env:
+        - name: MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: vegetable-app-config
+              key: MONGODB_URI
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: vegetable-app-config
+              key: PORT
