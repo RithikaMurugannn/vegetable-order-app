@@ -18,7 +18,7 @@ spec:
         image: rithika17/vegetable-order-app:v1.0.1
         ports:
         - containerPort: 3000
-          env:
+        env:
         - name: MONGODB_URI
           valueFrom:
             configMapKeyRef:
@@ -29,5 +29,9 @@ spec:
             configMapKeyRef:
               name: vegetable-app-config
               key: PORT
-
+        - name: MONGO_INITDB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: vegetable-app-config
+              key: MONGO_INITDB_DATABASE
 
