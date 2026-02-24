@@ -23,6 +23,6 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: vegetable-app-config
-              key: MONGODB_URI
+              key: MONGO_URI
 
 
