@@ -4,8 +4,8 @@ metadata:
   name: mongodb
   namespace: rithika-ns
 spec:
-  serviceName: mongodb
   replicas: 1
+  serviceName: "mongodb"
   selector:
     matchLabels:
       app: mongodb
@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongo:6
+        image: mongo:latest
         ports:
         - containerPort: 27017
         volumeMounts:
-        - name: mongo-data
-          mountPath: /data/db
+          - mountPath: /data/db
+            name: mongo-data
         env:
         - name: MONGO_INITDB_DATABASE
           valueFrom:
@@ -33,8 +33,7 @@ spec:
   - metadata:
       name: mongo-data
     spec:
-      accessModes:
-      - ReadWriteOnce
+      accessModes: ["ReadWriteOnce"]
       storageClassName: retail-sc
       resources:
         requests:
