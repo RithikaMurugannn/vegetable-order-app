@@ -4,5 +4,5 @@ metadata:
   name: vegetable-config
   namespace: rithika-ns
 data:
-  MONGO_URI: mongodb://mongodb:27017/vegetables
+  MONGODB_URI: mongodb://mongodb:27017/vegetables
   PORT: "3000"
