@@ -4,11 +4,7 @@ metadata:
   name: mongodb-deployment
   namespace: rithika-ns
 spec:
-<<<<<<< HEAD
   replicas: 2
-=======
-  replicas: 1
->>>>>>> origin/main
   serviceName: "mongodb"
   selector:
     matchLabels:
@@ -33,7 +29,6 @@ spec:
               name: vegetable-app-config
               key: MONGO_INITDB_DATABASE
 
-<<<<<<< HEAD
   volumeClaimTemplates:  # it is referencing pvc automatically instead of refering pvc manually in the pod or yaml file
     - metadata:
         name: mongo-data
@@ -43,14 +38,3 @@ spec:
         resources:
           requests:
             storage: 1Gi
-=======
-  volumeClaimTemplates:
-  - metadata:
-      name: mongo-data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: retail-sc
-      resources:
-        requests:
-          storage: 1Gi
->>>>>>> origin/main
