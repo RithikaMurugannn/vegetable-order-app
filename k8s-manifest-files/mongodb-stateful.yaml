@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongodb
+  name: mongodb-deployment
   namespace: rithika-ns
 spec:
   replicas: 1
@@ -15,7 +15,7 @@ spec:
         app: mongodb
     spec:
       containers:
-      - name: mongodb-containers
+      - name: mongodb-container
         image: mongo:latest
         ports:
         - containerPort: 27017
