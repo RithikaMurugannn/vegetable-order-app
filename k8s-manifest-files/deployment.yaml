@@ -24,14 +24,5 @@ spec:
             configMapKeyRef:
               name: vegetable-app-config
               key: MONGODB_URI
-        - name: PORT
-          valueFrom:
-            configMapKeyRef:
-              name: vegetable-app-config
-              key: PORT
-        - name: MONGO_INITDB_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: vegetable-app-config
-              key: MONGO_INITDB_DATABASE
+
 

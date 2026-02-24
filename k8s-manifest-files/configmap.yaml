@@ -6,8 +6,4 @@ metadata:
 data:
   MONGODB_URI: mongodb://mongodb:27017/vegetable_order_app
   PORT: "3000"
-<<<<<<< HEAD
   MONGO_INITDB_DATABASE: "vegetable_order_app"
-
-=======
->>>>>>> 85b117b1546918aaf15a6533975878647869b743
