@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: retail-mongodb-pvc
+  name: veg-mongodb-pvc
   namespace: rithika-ns
 spec:
   accessModes:  # How the volume will be accessed by the pods
