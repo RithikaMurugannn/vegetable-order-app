@@ -4,6 +4,5 @@ metadata:
   name: vegetable-app-config
   namespace: rithika-ns
 data:
-  MONGODB_URI: mongodb://mongodb:27017/vegetable_order_app
-  PORT: "3000"
+  MONGODB_URI: "mongodb://mongodb:27017/vegetable_order_app"
   MONGO_INITDB_DATABASE: "vegetable_order_app"
