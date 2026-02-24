@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: vegetable-order-app
-        image: rithika17/vegetable-order-app:v1.0.1
+        image: rithika17/vegetable-order-app:v1.0.0
         ports:
         - containerPort: 3000
         env:
