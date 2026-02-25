@@ -23,18 +23,18 @@ spec:
           - mountPath: {{ .Values.statefulset.containers.volumeMounts.mountPath }}
             name: {{ .Values.statefulset.containers.volumeMounts.name }}
         env:
-        - name: {{ .Values.statefulset.containers.env.MONGO_INITDB_DATABASE.name }}
+        - name: MONGO_INITDB_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: {{ .Values.statefulset.containers.env.valueFrom.configMapKeyRef }}
-              key: {{ .Values.statefulset.containers.env.valueFrom.key }}
+              name: {{ .Release.Name }}-configmap
+              key: MONGO_INITDB_DATABASE
 
   volumeClaimTemplates:  # it is referencing pvc automatically instead of refering pvc manually in the pod or yaml file
     - metadata:
-        name: {{ .Values.statefulset.volumeClaims.name }}
+        name: {{ .Values.statefulset.volumeMounts.name }}
       spec:
-        accessModes: {{ .Values.statefulset.volumeClaims.accessModes }}
-        storageClassName: {{ .Values.statefulset.volumeClaims.storageClassName }}
+        accessModes: {{ .Values.statefulset.volumeMounts.accessModes }}
+        storageClassName: {{ .Values.statefulset.volumeMounts.storageClassName }}
         resources:
           requests:
-            storage: {{ .Values.statefulset.volumeClaims.storage }}
+            storage: {{ .Values.statefulset.volumeMounts.storage }}
