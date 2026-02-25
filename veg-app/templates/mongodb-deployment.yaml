@@ -33,8 +33,7 @@ spec:
     - metadata:
         name: {{ .Values.mongodb.volume.name }}
       spec:
-        accessModes:
-          - {{ .Values.mongodb.volume.accessMode }}
+        accessModes: ["ReadWriteOnce"]
         storageClassName: {{ .Release.Name }}-storageclass
         resources:
           requests:
