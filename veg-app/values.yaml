@@ -45,15 +45,9 @@ statefulset:
     volumeMounts:
       - name: mongodb-data
         mountPath: /data/db
-    env:
-      - name: MONGO_INITDB_DATABASE
-        configMapKeyRef: vegetable-app-config
-        key: MONGO_INITDB_DATABASE
-  volumeClaims:
-    - name: mongodb-data
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: veg-sc
-      storage: 1Gi
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: veg-sc
+        storage: 1Gi
 
 #mongodb service details
 
