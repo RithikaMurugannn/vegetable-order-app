@@ -44,11 +44,12 @@ mongodb:
 
 #mongodb service details
 
-mongodb-service:
+mongodbService:
   name: mongodb
   port: 27017
   protocol: TCP
   clusterIP: None
+  app: mongodb
 
 #pvc details
 pvc:
