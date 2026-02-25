@@ -4,37 +4,38 @@ metadata:
   name: {{ .Release.Name }}-statefulset
   namespace: {{ .Values.namespace }}
 spec:
-  replicas: {{ .Values.statefulset.replicas }}
-  serviceName: {{ .Values.statefulset.serviceName }}
+  replicas: {{ .Values.mongodb.replicas }}
+  serviceName: {{ .Values.mongodb.serviceName }}
   selector:
     matchLabels:
-      app: {{ .Values.statefulset.labels.app }}
+      app: {{ .Values.mongodb.app }}
   template:
     metadata:
       labels:
-        app: {{ .Values.statefulset.labels.app }}
+        app: {{ .Values.mongodb.app }}
     spec:
       containers:
-      - name: {{ .Values.statefulset.containers.name }}
-        image: ""{{ .Values.mongodb.repository }}:{{ .Values.mongodb.tag }}""
-        ports:
-        - containerPort: {{ .Values.statefulset.containers.port }}
-        volumeMounts:
-          - mountPath: {{ .Values.statefulset.containers.volumeMounts.mountPath }}
-            name: {{ .Values.statefulset.containers.volumeMounts.name }}
-        env:
-        - name: MONGO_INITDB_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: {{ .Release.Name }}-configmap
-              key: MONGO_INITDB_DATABASE
+        - name: {{ .Values.mongodb.containerName }}
+          image: "{{ .Values.mongodb.repository }}:{{ .Values.mongodb.tag }}"
+          ports:
+            - containerPort: {{ .Values.mongodb.port }}
+          volumeMounts:
+            - mountPath: {{ .Values.mongodb.volume.mountPath }}
+              name: {{ .Values.mongodb.volume.name }}
+          env:
+            - name: MONGO_INITDB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-configmap
+                  key: MONGO_INITDB_DATABASE
 
-  volumeClaimTemplates:  # it is referencing pvc automatically instead of refering pvc manually in the pod or yaml file
+  volumeClaimTemplates:
     - metadata:
-        name: {{ .Values.statefulset.volumeMounts.name }}
+        name: {{ .Values.mongodb.volume.name }}
       spec:
-        accessModes: {{ .Values.statefulset.volumeMounts.accessModes }}
-        storageClassName: {{ .Values.statefulset.volumeMounts.storageClassName }}
+        accessModes:
+          - {{ .Values.mongodb.volume.accessMode }}
+        storageClassName: {{ .Release.Name }}-storageclass
         resources:
           requests:
-            storage: {{ .Values.statefulset.volumeMounts.storage }}
+            storage: {{ .Values.mongodb.volume.size }}
