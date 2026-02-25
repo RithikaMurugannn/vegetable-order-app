@@ -11,4 +11,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.pvc.size }}  # the amount of storage requested by the PVC
-  storageClassName: {{ .Values.storageClass.name }}  # the name of the StorageClass to use for this PVC
+  storageClassName: {{ .Release.Name }}-storageclass  # the name of the StorageClass to use for this PVC
+
