@@ -44,20 +44,18 @@ mongodb:
 
 #mongodb service details
 
-mongodbService:
+mongodb_service:
   name: mongodb-service
   port: 27017
+  protocol: TCP
+  clusterIP: None
 
 #pvc details
 pvc:
   accessMode: ReadWriteOnce
   size: 2Gi
 
-#headless service details
-headless:
-    app: mongodb
-    port: 27017
-    clusterIP: None
+
 
 #storage class details
 storageClass:
