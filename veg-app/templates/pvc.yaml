@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   accessModes:  # How the volume will be accessed by the pods
-    -  ReadWriteOnce
+    {{ .Values.pvc.accessMode }}
    # - ReadOnlyMany  # multiple nodes can read, but only one node can write
    # - ReadWriteMany # multiple nodes can read/write
   resources:
