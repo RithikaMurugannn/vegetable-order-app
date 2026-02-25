@@ -5,9 +5,9 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: {{ .Values.headless.selector.app }}
+    app: {{ .Values.headless.app }}
   ports:
     - port: {{ .Values.headless.port }}
-      targetPort: {{ .Values.headless.targetPort }}
+      targetPort: {{ .Values.headless.port }}
       protocol: TCP
   clusterIP: {{ .Values.headless.clusterIP }}
