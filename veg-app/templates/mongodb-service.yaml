@@ -11,3 +11,4 @@ spec:
     - port: {{ .Values.mongodb.port }}
       targetPort: {{ .Values.mongodb.port }}
       protocol: TCP
+  clusterIP: {{ .Values.mongodb.clusterIP}} 
