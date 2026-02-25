@@ -44,8 +44,8 @@ mongodb:
 
 #mongodb service details
 
-mongodb_service:
-  name: mongodb-service
+mongodb-service:
+  name: mongodb
   port: 27017
   protocol: TCP
   clusterIP: None
