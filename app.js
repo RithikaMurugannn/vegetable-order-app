@@ -15,7 +15,7 @@ app.use(express.static('public')); // Serve static files from the 'public' direc
 // Connect to MongoDB
 const connectToDatabase = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/vegetable_order_app', {
+        await mongoose.connect('mongodb://mongodb:27017/vegetable_order_app', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
