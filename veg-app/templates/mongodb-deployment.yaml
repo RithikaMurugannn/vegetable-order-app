@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-statefulset
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.statefulset.replicas }}
+  serviceName: {{ .Values.statefulset.serviceName }}
+  selector:
+    matchLabels:
+      app: {{ .Values.statefulset.labels.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.statefulset.labels.app }}
+    spec:
+      containers:
+      - name: {{ .Values.statefulset.containers.name }}
+        image: {{ .Values.statefulset.containers.image }}
+        ports:
+        - containerPort: {{ .Values.statefulset.containers.port }}
+        volumeMounts:
+          - mountPath: {{ .Values.statefulset.containers.volumeMounts.mountPath }}
+            name: {{ .Values.statefulset.containers.volumeMounts.name }}
+        env:
+        - name: {{ .Values.statefulset.containers.env.MONGO_INITDB_DATABASE.name }}
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.statefulset.containers.env.valueFrom.configMapKeyRef }}
+              key: {{ .Values.statefulset.containers.env.valueFrom.key }}
+
+  volumeClaimTemplates:  # it is referencing pvc automatically instead of refering pvc manually in the pod or yaml file
+    - metadata:
+        name: {{ .Values.statefulset.volumeClaims.name }}
+      spec:
+        accessModes: {{ .Values.statefulset.volumeClaims.accessModes }}
+        storageClassName: {{ .Values.statefulset.volumeClaims.storageClassName }}
+        resources:
+          requests:
+            storage: {{ .Values.statefulset.volumeClaims.storage }}
