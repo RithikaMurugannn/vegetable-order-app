@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vegetable-order-app-deployment
+  namespace: rithika-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vegetable-order-app
+  template:
+    metadata:
+      labels:
+        app: vegetable-order-app
+    spec:
+      containers:
+      - name: vegetable-order-app
+        image: rithika17/vegetable-order-app:v1.0.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: vegetable-app-config
+              key: MONGO_URI
+
+
