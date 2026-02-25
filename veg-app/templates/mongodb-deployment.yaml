@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.statefulset.containers.name }}
-        image: {{ .Values.statefulset.containers.image }}
+        image: ""{{ .Values.mongodb.repository }}:{{ .Values.mongodb.tag }}""
         ports:
         - containerPort: {{ .Values.statefulset.containers.port }}
         volumeMounts:
