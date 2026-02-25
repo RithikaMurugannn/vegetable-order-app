@@ -5,8 +5,8 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   selector:
-    app: {{ .Values.statefulset.labels.app }}
+    app: {{ .Values.mongodb.app }}
   ports:
-    - port: {{ .Values.statefulset.containers.port }}
-      targetPort: {{ .Values.statefulset.containers.port }}
+    - port: {{ .Values.mongodb.port }}
+      targetPort: {{ .Values.mongodb.port }}
       protocol: TCP
