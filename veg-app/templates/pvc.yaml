@@ -5,10 +5,10 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   accessModes:  # How the volume will be accessed by the pods
-    {{ .Values.pvc.accessModes }}
+    -  ReadWriteOnce
    # - ReadOnlyMany  # multiple nodes can read, but only one node can write
    # - ReadWriteMany # multiple nodes can read/write
   resources:
     requests:
-      storage: {{ .Values.pvc.resources.requests.storage }}  # the amount of storage requested by the PVC
-  storageClassName: {{ .Values.pvc.storageClassName }}  # the name of the StorageClass to use for this PVC
+      storage: {{ .Values.pvc.size }}  # the amount of storage requested by the PVC
+  storageClassName: {{ .Release.Name }}-storageclass  # the name of the StorageClass to use for this PVC
