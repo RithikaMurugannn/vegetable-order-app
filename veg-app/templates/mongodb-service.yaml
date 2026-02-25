@@ -4,6 +4,7 @@ metadata:
   name: {{ .Release.Name }}-mongodb-service
   namespace: {{ .Values.namespace }}
 spec:
+  type: {{ .Values.service.type }}
   selector:
     app: {{ .Values.mongodb.app }}
   ports:
