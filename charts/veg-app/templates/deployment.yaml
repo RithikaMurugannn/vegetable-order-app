@@ -14,15 +14,15 @@ spec:
         app: {{ .Values.deployment.labels.app }}
     spec:
       containers:
-        - name: {{ .Values.deployment.labels.app }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          ports:
-            - containerPort: {{ .Values.deployment.port }}
-          env:
-            - name: MONGO_URI
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Release.Name }}-configmap
-                  key: MONGO_URI
+      - name: {{ .Values.deployment.labels.app }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.deployment.port }}
+        env:
+          - name: MONGO_URI
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-configmap
+                key: MONGO_URI
 
 

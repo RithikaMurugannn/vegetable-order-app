@@ -15,19 +15,19 @@ spec:
         app: {{ .Values.mongodb.app }}
     spec:
       containers:
-        - name: {{ .Values.mongodb.containerName }}
-          image: "{{ .Values.mongodb.repository }}:{{ .Values.mongodb.tag }}"
-          ports:
-            - containerPort: {{ .Values.mongodb.port }}
-          volumeMounts:
-            - mountPath: {{ .Values.mongodb.volume.mountPath }}
-              name: {{ .Values.mongodb.volume.name }}
-          env:
-            - name: MONGO_INITDB_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Release.Name }}-configmap
-                  key: MONGO_INITDB_DATABASE
+      - name: {{ .Values.mongodb.containerName }}
+        image: "{{ .Values.mongodb.repository }}:{{ .Values.mongodb.tag }}"
+        ports:
+        - containerPort: {{ .Values.mongodb.port }}
+        volumeMounts:
+          - mountPath: {{ .Values.mongodb.volume.mountPath }}
+            name: {{ .Values.mongodb.volume.name }}
+        env:
+        - name: MONGO_INITDB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-configmap
+              key: MONGO_INITDB_DATABASE
 
   volumeClaimTemplates:
     - metadata:
