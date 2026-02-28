@@ -29,7 +29,7 @@ service:
 
 
 mongodb:
-  replicas: 4
+  replicas: 2
   serviceName: mongodb-svc
   app: mongodb
   containerName: mongodb-container
