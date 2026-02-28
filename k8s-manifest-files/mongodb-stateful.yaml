@@ -4,8 +4,8 @@ metadata:
   name: mongodb-deployment
   namespace: rithika-ns
 spec:
-  replicas: 2
-  serviceName: "mongodb"
+  replicas: 1
+  serviceName: mongodb
   selector:
     matchLabels:
       app: mongodb
@@ -19,22 +19,22 @@ spec:
         image: mongo:latest
         ports:
         - containerPort: 27017
-        volumeMounts:
-          - mountPath: /data/db
-            name: mongo-data
         env:
         - name: MONGO_INITDB_DATABASE
           valueFrom:
             configMapKeyRef:
               name: vegetable-app-config
               key: MONGO_INITDB_DATABASE
-
-  volumeClaimTemplates:  # it is referencing pvc automatically instead of refering pvc manually in the pod or yaml file
-    - metadata:
-        name: mongo-data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: veg-sc
-        resources:
-          requests:
-            storage: 1Gi
+        volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: veg-sc
+      resources:
+        requests:
+          storage: 1Gi
